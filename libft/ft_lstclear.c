@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoran-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 14:52:18 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/03 14:56:45 by fmoran-m         ###   ########.fr       */
+/*   Created: 2023/10/03 14:46:21 by fmoran-m          #+#    #+#             */
+/*   Updated: 2023/10/04 17:23:50 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft/libft.h"
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp;
 
-int	ft_printf(char const *format, ...);
-int	write_string(va_list args);
-int	write_char(va_list args);
-int	write_module(void);
-#endif
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = temp;
+	}
+	*lst = NULL;
+}

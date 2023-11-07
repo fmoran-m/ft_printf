@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoran-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 14:52:18 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/03 14:56:45 by fmoran-m         ###   ########.fr       */
+/*   Created: 2023/09/26 20:25:10 by fmoran-m          #+#    #+#             */
+/*   Updated: 2023/10/06 13:46:13 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft/libft.h"
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char			*ptr;
+	unsigned int	i;
+	unsigned int	size;
 
-int	ft_printf(char const *format, ...);
-int	write_string(va_list args);
-int	write_char(va_list args);
-int	write_module(void);
-#endif
+	if (!s || !f)
+		return (0);
+	size = ft_strlen(s);
+	ptr = (char *)malloc(size + 1);
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}
+	ptr[i] = 0;
+	return (ptr);
+}

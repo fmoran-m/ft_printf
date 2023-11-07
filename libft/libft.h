@@ -6,7 +6,7 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:30:29 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/03 14:56:49 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:02:21 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
+# include <stdint.h>
 
 typedef struct s_list
 {

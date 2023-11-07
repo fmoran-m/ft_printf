@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoran-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 14:52:18 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/03 14:56:45 by fmoran-m         ###   ########.fr       */
+/*   Created: 2023/09/26 20:34:40 by fmoran-m          #+#    #+#             */
+/*   Updated: 2023/10/06 13:55:42 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft/libft.h"
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	i;
 
-int	ft_printf(char const *format, ...);
-int	write_string(va_list args);
-int	write_char(va_list args);
-int	write_module(void);
-#endif
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

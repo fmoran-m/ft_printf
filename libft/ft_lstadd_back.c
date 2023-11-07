@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoran-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 14:52:18 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/03 14:56:45 by fmoran-m         ###   ########.fr       */
+/*   Created: 2023/10/03 14:43:54 by fmoran-m          #+#    #+#             */
+/*   Updated: 2023/10/04 19:29:12 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft/libft.h"
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*temp;
 
-int	ft_printf(char const *format, ...);
-int	write_string(va_list args);
-int	write_char(va_list args);
-int	write_module(void);
-#endif
+	if (!new)
+		return ;
+	temp = *lst;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		temp = ft_lstlast(*lst);
+		temp->next = new;
+	}
+}
