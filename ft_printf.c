@@ -89,8 +89,8 @@ static int	check_typo(char const *format, int i, va_list args)
 		counter = write_unsigned(args);
 	else if (format[i] == 'x')
 		counter = write_lower_hex(args);
-	//else if (format[i] == 'X')
-		//counter = write_upper_hex(args);
+	else if (format[i] == 'X')
+		counter = write_upper_hex(args);
 	else if (format[i] == '%')
 		counter = write_module();
 	return (counter);

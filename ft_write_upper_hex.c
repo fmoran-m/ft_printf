@@ -41,7 +41,7 @@ static void	copy_string(unsigned int n, char *str)
 	unsigned int	temp;
 	unsigned int	i;
 
-	reference = "0123456789abcdef";
+	reference = "0123456789ABCDEF";
 	i = 0;
 	temp = 0;
 	while (n != 0)
@@ -70,7 +70,7 @@ static char	*ft_hextoa(unsigned int n)
 	return (str);
 }
 
-int	write_lower_hex(va_list args)
+int	write_upper_hex(va_list args)
 {
 	ssize_t			bytes;
 	unsigned int	typo;
