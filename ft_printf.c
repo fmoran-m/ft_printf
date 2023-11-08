@@ -33,19 +33,44 @@ int	write_string(va_list args)
 	bytes = write(1, typo, len);
 	return (bytes);
 }
-/*
-int write_number(va_list args)
-{
 
-}
-*/
 int	write_module(void)
 {
 	ssize_t	bytes;
+
 	bytes = write(1, "%", 1);
 	return (bytes);
 }
 
+int	write_number(va_list args)
+{
+	ssize_t	bytes;
+	int		typo;
+	int		size;
+	char	*num;
+
+	typo = va_arg(args, int);
+	num = ft_itoa(typo);
+	size = ft_strlen(num);
+	bytes = write(1, num, size);
+	free (num);
+	return (bytes);
+}
+
+int	write_unsigned(va_list args)
+{
+	ssize_t				bytes;
+	int					typo;
+	int					size;
+	char				*num;
+
+	typo = va_arg(args, int);
+	num = ft_itoa(u_num);
+	size = ft_strlen(num);
+	bytes = write(1, num, size);
+	free (num);
+	return (bytes);
+}
 
 static int	check_typo(char const *format, int i, va_list args)
 {
@@ -58,12 +83,10 @@ static int	check_typo(char const *format, int i, va_list args)
 		counter = write_string(args);
 	//else if (format[i] == 'p')
 		//counter = write_void(args);
-	//else if (format[i] == 'd')
-		//counter = write_number(args);
-	//else if (format[i] == 'i')
-		//counter = write_number(args);
-	//else if (format[i] == 'u')
-		//counter = write_unsigned(args);
+	else if (format[i] == 'd' || format[i] == 'i')
+		counter = write_number(args);
+	else if (format[i] == 'u')
+		counter = write_unsigned(args);
 	//else if (format[i] == 'x')
 		//counter = write_lower_hex(args);
 	//else if (format[i] == 'X')
@@ -104,14 +127,4 @@ int	ft_printf(char const *format, ...)
 	}
 	va_end(args);
 	return (counter);
-}
-
-int main (void)
-{
-	char c = 'z';
-	char *s = "string";
-	//void *a = "b";
-	//int num = 41;
-	ft_printf("mi char es %c\nmi string es %s\nmi modulo es %%\n", c, s);
-    return (0);
 }

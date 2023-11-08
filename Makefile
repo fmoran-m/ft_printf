@@ -8,16 +8,15 @@ AR = ar rcs
 SRC = ft_printf.c
 OBJS = ${SRC:.c=.o}
 
-all = $(NAME)
+$(NAME): $(OBJS)
+		make -C $(LIBFTDIR)
+		cp $(LIBFT) $(NAME)
+		$(AR) $(NAME) $(OBJS)
 
 %.o:%.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT)
-		$(AR) $(NAME) $(OBJS)
-
-$(LIBFT):
-	make -C $(LIBFTDIR)
+all: $(NAME)
 
 clean:
 	$(RM) $(OBJS)
