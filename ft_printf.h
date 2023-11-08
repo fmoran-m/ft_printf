@@ -24,4 +24,5 @@ int	ft_printf(char const *format, ...);
 int	write_string(va_list args);
 int	write_char(va_list args);
 int	write_module(void);
+int	write_lower_hex(va_list args);
 #endif

@@ -44,10 +44,10 @@ int	write_module(void)
 
 int	write_number(va_list args)
 {
-	ssize_t	bytes;
-	int		typo;
-	int		size;
-	char	*num;
+	ssize_t			bytes;
+	int				typo;
+	int				size;
+	char			*num;
 
 	typo = va_arg(args, int);
 	num = ft_itoa(typo);
@@ -59,13 +59,13 @@ int	write_number(va_list args)
 
 int	write_unsigned(va_list args)
 {
-	ssize_t				bytes;
-	int					typo;
-	int					size;
-	char				*num;
+	ssize_t			bytes;
+	unsigned int	typo;
+	int				size;
+	char			*num;
 
-	typo = va_arg(args, int);
-	num = ft_itoa(u_num);
+	typo = va_arg(args, unsigned int);
+	num = ft_utoa(typo);
 	size = ft_strlen(num);
 	bytes = write(1, num, size);
 	free (num);
@@ -87,8 +87,8 @@ static int	check_typo(char const *format, int i, va_list args)
 		counter = write_number(args);
 	else if (format[i] == 'u')
 		counter = write_unsigned(args);
-	//else if (format[i] == 'x')
-		//counter = write_lower_hex(args);
+	else if (format[i] == 'x')
+		counter = write_lower_hex(args);
 	//else if (format[i] == 'X')
 		//counter = write_upper_hex(args);
 	else if (format[i] == '%')
