@@ -81,8 +81,8 @@ static int	check_typo(char const *format, int i, va_list args)
 		counter = write_char(args);
 	else if (format[i] == 's')
 		counter = write_string(args);
-	//else if (format[i] == 'p')
-		//counter = write_void(args);
+	else if (format[i] == 'p')
+		counter = write_pointer_address(args);
 	else if (format[i] == 'd' || format[i] == 'i')
 		counter = write_number(args);
 	else if (format[i] == 'u')
