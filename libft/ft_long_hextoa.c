@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_long_hextoa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 19:27:04 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/09 15:07:26 by fmoran-m         ###   ########.fr       */
+/*   Created: 2023/11/09 15:22:53 by fmoran-m          #+#    #+#             */
+/*   Updated: 2023/11/09 15:26:38 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,52 +30,42 @@ static void	invert(char *str)
 	}
 }
 
-static char	*reserve(int n)
+static char	*reserve(unsigned long long n)
 {
-	int		nr;
-	int		negative;
+	int		size;
 	char	*str;
 
-	nr = 0;
-	negative = 0;
-	if (n < 0)
-		negative = 1;
+	size = 0;
 	while (n != 0)
 	{
-		n = n / 10;
-		nr++;
+		n = n / 16;
+		size++;
 	}
-	str = (char *)malloc((nr + 1 + negative) * sizeof(char));
-	if (str == NULL)
+	str = (char *)ft_calloc(size + 1, sizeof(char));
+	if (!str)
 		return (NULL);
 	return (str);
 }
 
-static void	copy_string(int n, char *str)
+static void	copy_string(unsigned long long n, char *str)
 {
-	int	i;
-	int	original_n;
+	char			*reference;
+	unsigned int	temp;
+	unsigned int	i;
 
+	reference = "0123456789abcdef";
 	i = 0;
-	original_n = n;
+	temp = 0;
 	while (n != 0)
 	{
-		str[i] = (n % 10);
-		if (str[i] < 0)
-			str[i] = str[i] * -1;
-		str[i] = str[i] + 48;
-		n = n / 10;
+		temp = n % 16;
+		str[i] = reference[temp];
+		n = n / 16;
 		i++;
 	}
-	if (original_n < 0)
-	{
-		str[i] = '-';
-		i++;
-	}
-	str[i] = 0;
 }
 
-char	*ft_itoa(int n)
+char	*ft_long_hextoa(unsigned long long n)
 {
 	char	*str;
 
@@ -84,13 +74,8 @@ char	*ft_itoa(int n)
 		str = ft_strdup("0");
 		return (str);
 	}
-	if (n == -2147483648)
-	{
-		str = ft_strdup("-2147483648");
-		return (str);
-	}
 	str = reserve(n);
-	if (str == NULL)
+	if (!str)
 		return (NULL);
 	copy_string(n, str);
 	invert(str);

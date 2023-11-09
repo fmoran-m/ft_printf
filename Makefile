@@ -5,7 +5,7 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -f
 AR = ar rcs
-SRC = ft_printf.c ft_write_lower_hex.c ft_write_upper_hex.c ft_write_pointer_address.c
+SRC = ft_printf.c write_characters.c write_numbers.c
 OBJS = ${SRC:.c=.o}
 
 $(NAME): $(OBJS)
