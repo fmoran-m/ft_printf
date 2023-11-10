@@ -32,10 +32,14 @@ int	write_string(va_list args)
 	if (!typo)
 	{
 		bytes = write(1, "(null)", 6);
+		if (bytes != 6)
+			return (-1);
 		return (bytes);
 	}
 	len = ft_strlen(typo);
 	bytes = write(1, typo, len);
+	if (bytes != len)
+		return (-1);
 	return (bytes);
 }
 

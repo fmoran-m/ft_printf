@@ -21,10 +21,12 @@ int	write_upper_hex(va_list args)
 
 	typo = va_arg(args, unsigned int);
 	num = ft_upper_hextoa(typo);
-    if (!num)
-        return (-1);
+  if (!num)
+    return (-1);
 	size = ft_strlen(num);
 	bytes = write(1, num, size);
+	if (bytes != size)
+		return (free(num), -1);
 	free (num);
 	return (bytes);
 }
@@ -42,6 +44,8 @@ int	write_lower_hex(va_list args)
 		return (-1);
 	size = ft_strlen(num);
 	bytes = write(1, num, size);
+	if (bytes != size)
+		return (free(num), -1);
 	free (num);
 	return (bytes);
 }
@@ -54,31 +58,35 @@ int	write_pointer_address(va_list args)
 	char				*num;
 
 	bytes = write (1, "0x", 2);
-	if (bytes == -1)
+	if (bytes != 2)
 		return (-1);
 	typo = va_arg(args, unsigned long long);
 	num = ft_long_hextoa(typo);
-    if (!num)
-        return (-1);
+  if (!num)
+    return (-1);
 	size = ft_strlen(num);
 	bytes += write(1, num, size);
+	if (bytes != size + 2)
+		return (free(num), -1);
 	free (num);
 	return (bytes);
 }
 
 int	write_number(va_list args)
 {
-	ssize_t			bytes;
+	ssize_t		bytes;
 	int				typo;
 	int				size;
 	char			*num;
 
 	typo = va_arg(args, int);
 	num = ft_itoa(typo);
-    if (!num)
-        return (-1);
+  if (!num)
+    return (-1);
 	size = ft_strlen(num);
 	bytes = write(1, num, size);
+	if (bytes != size)
+		return (free (num), -1);
 	free (num);
 	return (bytes);
 }
@@ -92,10 +100,12 @@ int	write_unsigned(va_list args)
 
 	typo = va_arg(args, unsigned int);
 	num = ft_utoa(typo);
-    if (!num)
-        return (-1);
+  if (!num)
+    return (-1);
 	size = ft_strlen(num);
 	bytes = write(1, num, size);
+	if (bytes != size)
+		return (free(num), -1);
 	free (num);
 	return (bytes);
 }
