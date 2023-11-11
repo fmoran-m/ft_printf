@@ -42,27 +42,29 @@ int	ft_printf(char const *format, ...)
 	va_list		args;
 	int			i;
 	int			counter;
-	int			bytes;
+	int			temp;
 
 	if (!format)
 		return (0);
 	i = 0;
-	bytes = 0;
+	temp = 0;
 	counter = 0;
 	va_start(args, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			bytes = check_typo(format, i + 1, args);
-			if (bytes == -1)
+			temp = check_typo(format, i + 1, args);
+			if (temp == -1)
 				return (-1);
-			counter = counter + bytes;
+			counter = counter + temp;
 			i = i + 2;
 		}
 		else
 		{
-			write(1, &format[i], 1);
+			temp = write(1, &format[i], 1);
+			if (temp == -1)
+				return (-1);
 			i++;
 			counter++;
 		}

@@ -18,7 +18,7 @@ int	write_char(va_list args)
 	ssize_t	bytes;
 
 	typo = va_arg(args, int);
-	bytes = write(1, &typo, 1);
+	bytes = write(1, &typo, 1); //Ojo que a lo mejor toca controlar
 	return (bytes);
 }
 
@@ -28,10 +28,10 @@ int	write_string(va_list args)
 	int		len;
 	ssize_t	bytes;
 
-	typo = va_arg(args, char*);
+	typo = va_arg (args, char*);
 	if (!typo)
 	{
-		bytes = write(1, "(null)", 6);
+		bytes = write(1, "(null)", 6); //Habrá que ir uno a uno
 		if (bytes != 6)
 			return (-1);
 		return (bytes);
@@ -47,6 +47,6 @@ int	write_module(void)
 {
 	ssize_t	bytes;
 
-	bytes = write(1, "%", 1);
+	bytes = write(1, "%", 1); //Ojo también
 	return (bytes);
 }

@@ -14,98 +14,125 @@
 
 int	write_upper_hex(va_list args)
 {
-	ssize_t			bytes;
+	ssize_t			temp;
 	unsigned int	typo;
-	int				size;
+	int				i;
 	char			*num;
 
+	i = 0;
+	temp = 0;
 	typo = va_arg(args, unsigned int);
 	num = ft_upper_hextoa(typo);
-  if (!num)
-    return (-1);
-	size = ft_strlen(num);
-	bytes = write(1, num, size);
-	if (bytes != size)
-		return (free(num), -1);
+	if (!num)
+    	return (-1);
+	while (num[i])
+	{
+		temp = write(1, &num[i], 1);
+		if (temp == -1)
+			return (free(num), -1);
+		i++;
+	}
 	free (num);
-	return (bytes);
+	return (i);
 }
 
 int	write_lower_hex(va_list args)
 {
-	ssize_t			bytes;
+	ssize_t			temp;
 	unsigned int	typo;
-	int				size;
+	int				i;
 	char			*num;
 
+	i = 0;
+	temp = 0;
 	typo = va_arg(args, unsigned int);
 	num = ft_lower_hextoa(typo); //Controlar reserva
 	if (!num)
 		return (-1);
-	size = ft_strlen(num);
-	bytes = write(1, num, size);
-	if (bytes != size)
-		return (free(num), -1);
+	while (num[i])
+	{
+		temp = write(1, &num[i], 1);
+		if (temp == -1)
+			return (free(num), -1);
+		i++;
+	}
 	free (num);
-	return (bytes);
+	return (i);
 }
 
 int	write_pointer_address(va_list args)
 {
-	ssize_t				bytes;
+	ssize_t				temp;
 	unsigned long long	typo;
-	int					size;
+	int					i;
 	char				*num;
 
-	bytes = write (1, "0x", 2);
-	if (bytes != 2)
+	i = 0;
+	temp = 0;
+	temp = write (1, "0", 1);
+	if (temp == -1)
+		return (-1);
+	temp = write (1, "x", 1);
+	if (temp == -1)
 		return (-1);
 	typo = va_arg(args, unsigned long long);
 	num = ft_long_hextoa(typo);
-  if (!num)
-    return (-1);
-	size = ft_strlen(num);
-	bytes += write(1, num, size);
-	if (bytes != size + 2)
-		return (free(num), -1);
+  	if (!num)
+    	return (-1);
+	while (num[i++])
+	{
+		temp = write(1, &num[i], 1);
+		if (temp == -1)
+			return (free(num), -1);
+	}
 	free (num);
-	return (bytes);
+	return (i + 2);
 }
 
 int	write_number(va_list args)
 {
-	ssize_t		bytes;
+	ssize_t			temp;
 	int				typo;
-	int				size;
+	int				i;
 	char			*num;
 
+	i = 0;
+	temp = 0;
 	typo = va_arg(args, int);
 	num = ft_itoa(typo);
-  if (!num)
-    return (-1);
-	size = ft_strlen(num);
-	bytes = write(1, num, size);
-	if (bytes != size)
-		return (free (num), -1);
+  	if (!num)
+    	return (-1);
+	while (num[i])
+	{
+		temp = write(1, &num[i], 1);
+		if (temp == -1)
+			return (free(num), -1);
+		i++;
+	}
 	free (num);
-	return (bytes);
+	return (1);
 }
 
 int	write_unsigned(va_list args)
 {
-	ssize_t			bytes;
+	ssize_t			temp;
 	unsigned int	typo;
-	int				size;
+	int				i;
 	char			*num;
 
+	i = 0;
+	temp = 0;
 	typo = va_arg(args, unsigned int);
 	num = ft_utoa(typo);
-  if (!num)
-    return (-1);
-	size = ft_strlen(num);
-	bytes = write(1, num, size);
-	if (bytes != size)
-		return (free(num), -1);
+  	if (!num)
+    	return (-1);
+	while (num[i])
+	{
+		temp = write(1, &num[i], 1);
+		if (temp == -1)
+			return (free(num), -1);
+		i++;
+	}
 	free (num);
-	return (bytes);
+	return (i);
 }
