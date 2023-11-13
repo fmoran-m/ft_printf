@@ -6,13 +6,13 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:51:53 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/13 13:27:33 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:44:09 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	check_typo(char const *format, int i, va_list args)
+static int	check_type(char const *format, int i, va_list args)
 {
 	int	counter;
 
@@ -47,7 +47,7 @@ static int	count_bytes(char const *format, va_list args, int counter)
 	{
 		if (format[i] == '%')
 		{
-			temp = check_typo(format, i + 1, args);
+			temp = check_type(format, i + 1, args);
 			if (temp == -1)
 				return (-1);
 			counter = counter + temp;
@@ -71,7 +71,7 @@ int	ft_printf(char const *format, ...)
 	int			counter;
 
 	if (!format)
-		return (0);
+		return (-1);
 	counter = 0;
 	va_start(args, format);
 	counter = count_bytes(format, args, counter);

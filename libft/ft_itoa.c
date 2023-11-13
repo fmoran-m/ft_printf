@@ -6,7 +6,7 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 19:27:04 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/09 15:07:26 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:00:47 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,6 @@ char	*ft_itoa(int n)
 	if (n == 0)
 	{
 		str = ft_strdup("0");
-		return (str);
-	}
-	if (n == -2147483648)
-	{
-		str = ft_strdup("-2147483648");
 		return (str);
 	}
 	str = reserve(n);

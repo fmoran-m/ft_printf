@@ -2,7 +2,7 @@ NAME = libftprintf.a
 LIBFT = ./libft/libft.a
 LIBFTDIR = ./libft
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 AR = ar rcs
 SRC = ft_printf.c write_characters.c write_numbers.c
@@ -11,10 +11,11 @@ OBJS = ${SRC:.c=.o}
 $(NAME): $(OBJS)
 		make -C $(LIBFTDIR)
 		cp $(LIBFT) $(NAME)
-		$(AR) $(NAME) $(OBJS)
+		$(AR) $(NAME) $(SRC)
+
 
 %.o:%.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 

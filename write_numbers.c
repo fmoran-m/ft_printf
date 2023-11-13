@@ -6,23 +6,24 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:57:30 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/13 13:40:09 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:45:45 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+
 int	write_upper_hex(va_list args)
 {
 	ssize_t			temp;
-	unsigned int	typo;
+	unsigned int	type;
 	int				i;
 	char			*num;
 
 	i = 0;
 	temp = 0;
-	typo = va_arg(args, unsigned int);
-	num = ft_upper_hextoa(typo);
+	type = va_arg(args, unsigned int);
+	num = ft_upper_hextoa(type);
 	if (!num)
 		return (-1);
 	while (num[i])
@@ -39,14 +40,14 @@ int	write_upper_hex(va_list args)
 int	write_lower_hex(va_list args)
 {
 	ssize_t			temp;
-	unsigned int	typo;
+	unsigned int	type;
 	int				i;
 	char			*num;
 
 	i = 0;
 	temp = 0;
-	typo = va_arg(args, unsigned int);
-	num = ft_lower_hextoa(typo);
+	type = va_arg(args, unsigned int);
+	num = ft_lower_hextoa(type);
 	if (!num)
 		return (-1);
 	while (num[i])
@@ -63,7 +64,7 @@ int	write_lower_hex(va_list args)
 int	write_pointer_address(va_list args)
 {
 	ssize_t				temp;
-	unsigned long long	typo;
+	unsigned long long	type;
 	int					i;
 	char				*num;
 
@@ -75,8 +76,8 @@ int	write_pointer_address(va_list args)
 	temp = write (1, "x", 1);
 	if (temp == -1)
 		return (-1);
-	typo = va_arg(args, unsigned long long);
-	num = ft_long_hextoa(typo);
+	type = va_arg(args, unsigned long long);
+	num = ft_long_hextoa(type);
 	if (!num)
 		return (-1);
 	while (num[i])
@@ -92,14 +93,14 @@ int	write_pointer_address(va_list args)
 int	write_number(va_list args)
 {
 	ssize_t			temp;
-	int				typo;
+	int				type;
 	int				i;
 	char			*num;
 
 	i = 0;
 	temp = 0;
-	typo = va_arg(args, int);
-	num = ft_itoa(typo);
+	type = va_arg(args, int);
+	num = ft_itoa(type);
 	if (!num)
 		return (-1);
 	while (num[i])
@@ -116,14 +117,14 @@ int	write_number(va_list args)
 int	write_unsigned(va_list args)
 {
 	ssize_t			temp;
-	unsigned int	typo;
+	unsigned int	type;
 	int				i;
 	char			*num;
 
 	i = 0;
 	temp = 0;
-	typo = va_arg(args, unsigned int);
-	num = ft_utoa(typo);
+	type = va_arg(args, unsigned int);
+	num = ft_utoa(type);
 	if (!num)
 		return (-1);
 	while (num[i])

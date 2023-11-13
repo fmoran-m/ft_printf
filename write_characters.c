@@ -6,7 +6,7 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:59:47 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/13 13:36:03 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:15:44 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,40 @@
 
 int	write_char(va_list args)
 {
-	int		typo;
+	int		c;
 	ssize_t	bytes;
 
-	typo = va_arg(args, int);
-	bytes = write(1, &typo, 1);
+	c = va_arg(args, int);
+	bytes = write(1, &c, 1);
 	return (bytes);
 }
 
 int	write_string(va_list args)
 {
-	char	*typo;
-	int		len;
-	ssize_t	bytes;
+	char	*str;
+	int		i;
+	char	*null;
 
-	typo = va_arg(args, char *);
-	if (!typo)
+	i = 0;
+	null = "(null)";
+	str = va_arg(args, char *);
+	if (!str)
 	{
-		bytes = write(1, "(null)", 6);
-		if (bytes != 6)
-			return (-1);
-		return (bytes);
+		while (null[i])
+		{
+			if (write(1, &null[i], 1) == -1)
+				return (-1);
+			i++;
+		}
+		return (i);
 	}
-	len = ft_strlen(typo);
-	bytes = write(1, typo, len);
-	if (bytes != len)
-		return (-1);
-	return (bytes);
+	while (str[i])
+	{
+		if (write(1, &str[i], 1) == -1)
+			return (-1);
+		i++;
+	}
+	return (i);
 }
 
 int	write_module(void)
