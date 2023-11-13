@@ -6,12 +6,11 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:57:30 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/13 19:45:45 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:41:57 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int	write_upper_hex(va_list args)
 {
