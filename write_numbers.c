@@ -6,7 +6,7 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:57:30 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/09 18:52:55 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:40:09 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	write_upper_hex(va_list args)
 	typo = va_arg(args, unsigned int);
 	num = ft_upper_hextoa(typo);
 	if (!num)
-    	return (-1);
+		return (-1);
 	while (num[i])
 	{
 		temp = write(1, &num[i], 1);
@@ -46,7 +46,7 @@ int	write_lower_hex(va_list args)
 	i = 0;
 	temp = 0;
 	typo = va_arg(args, unsigned int);
-	num = ft_lower_hextoa(typo); //Controlar reserva
+	num = ft_lower_hextoa(typo);
 	if (!num)
 		return (-1);
 	while (num[i])
@@ -77,13 +77,13 @@ int	write_pointer_address(va_list args)
 		return (-1);
 	typo = va_arg(args, unsigned long long);
 	num = ft_long_hextoa(typo);
-  	if (!num)
-    	return (-1);
-	while (num[i++])
+	if (!num)
+		return (-1);
+	while (num[i])
 	{
-		temp = write(1, &num[i], 1);
-		if (temp == -1)
+		if (write(1, &num[i], 1) == -1)
 			return (free(num), -1);
+		i++;
 	}
 	free (num);
 	return (i + 2);
@@ -100,8 +100,8 @@ int	write_number(va_list args)
 	temp = 0;
 	typo = va_arg(args, int);
 	num = ft_itoa(typo);
-  	if (!num)
-    	return (-1);
+	if (!num)
+		return (-1);
 	while (num[i])
 	{
 		temp = write(1, &num[i], 1);
@@ -110,7 +110,7 @@ int	write_number(va_list args)
 		i++;
 	}
 	free (num);
-	return (1);
+	return (i);
 }
 
 int	write_unsigned(va_list args)
@@ -124,8 +124,8 @@ int	write_unsigned(va_list args)
 	temp = 0;
 	typo = va_arg(args, unsigned int);
 	num = ft_utoa(typo);
-  	if (!num)
-    	return (-1);
+	if (!num)
+		return (-1);
 	while (num[i])
 	{
 		temp = write(1, &num[i], 1);

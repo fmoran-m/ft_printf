@@ -6,7 +6,7 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:51:53 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/09 18:22:47 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:27:33 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 static int	check_typo(char const *format, int i, va_list args)
 {
-	int counter;
+	int	counter;
 
 	counter = 0;
-
 	if (format[i] == 'c')
 		counter = write_char(args);
 	else if (format[i] == 's')
@@ -37,19 +36,13 @@ static int	check_typo(char const *format, int i, va_list args)
 	return (counter);
 }
 
-int	ft_printf(char const *format, ...)
+static int	count_bytes(char const *format, va_list args, int counter)
 {
-	va_list		args;
-	int			i;
-	int			counter;
-	int			temp;
+	int	i;
+	int	temp;
 
-	if (!format)
-		return (0);
 	i = 0;
 	temp = 0;
-	counter = 0;
-	va_start(args, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -69,6 +62,19 @@ int	ft_printf(char const *format, ...)
 			counter++;
 		}
 	}
+	return (counter);
+}
+
+int	ft_printf(char const *format, ...)
+{
+	va_list		args;
+	int			counter;
+
+	if (!format)
+		return (0);
+	counter = 0;
+	va_start(args, format);
+	counter = count_bytes(format, args, counter);
 	va_end(args);
 	return (counter);
 }

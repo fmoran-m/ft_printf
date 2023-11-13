@@ -6,7 +6,7 @@
 /*   By: fmoran-m <fmoran-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:59:47 by fmoran-m          #+#    #+#             */
-/*   Updated: 2023/11/09 16:02:11 by fmoran-m         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:36:03 by fmoran-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	write_char(va_list args)
 	ssize_t	bytes;
 
 	typo = va_arg(args, int);
-	bytes = write(1, &typo, 1); //Ojo que a lo mejor toca controlar
+	bytes = write(1, &typo, 1);
 	return (bytes);
 }
 
@@ -28,10 +28,10 @@ int	write_string(va_list args)
 	int		len;
 	ssize_t	bytes;
 
-	typo = va_arg (args, char*);
+	typo = va_arg(args, char *);
 	if (!typo)
 	{
-		bytes = write(1, "(null)", 6); //Habrá que ir uno a uno
+		bytes = write(1, "(null)", 6);
 		if (bytes != 6)
 			return (-1);
 		return (bytes);
@@ -47,6 +47,6 @@ int	write_module(void)
 {
 	ssize_t	bytes;
 
-	bytes = write(1, "%", 1); //Ojo también
+	bytes = write(1, "%", 1);
 	return (bytes);
 }
